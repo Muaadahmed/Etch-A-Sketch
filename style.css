@@ -8,9 +8,38 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     max-height: 100%;
     max-width: 100%;
+    padding: 100px;
 }
+
+body > * {
+    margin-bottom: 20px;
+}
+
+button {
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-left: 20px;
+    border: none;
+    background-color: black;
+    color: white;
+    font-weight: 700;
+}
+
+button:hover{
+    filter: invert(1);
+    cursor: pointer;
+} 
+
+.title {
+    font-size: 25px;
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+}
+
 /*
 
 :root{

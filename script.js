@@ -1,42 +1,89 @@
-let count = 0;
-
-let gridSize = 0;
-let squareSize = 0;
-
 const grid = document.querySelector('.grid');
+const container = document.querySelector('.container');
+const button = document.querySelector('.numOfSquares');
+const gridElement = document.querySelectorAll('.grid-element');
 
-gridSize = 20;
-squareSize = 35;
+let count = 0;
+let count2 = 0;
+let gridS = grid.style;
+let gridItem = null;
+let gridSize = 16;
+let currentGrid = 0;
+let rgbColor1;
+let rgbColor2;
+let rgbColor3;
+let rbgColor = `rgb(${rgbColor1}, ${rgbColor2}, ${rgbColor3})`;
+    
+button.addEventListener('click', () => {
+    if(currentGrid >= 1){
+        removePrevGrid();
+        gridSize = parseInt(prompt('How many Squares ?: '));
+        if(gridSize > 30){
+            while(gridSize > 30){
+                alert('Pick a number under 30');
+                gridSize = parseInt(prompt('How many Squares ?: '));
+                if(gridSize <= 30){
+                    createGrid(count2);
+                    count2 = 0;
+                    gridStyles();
+                    currentGrid++;
+                    console.log(gridSize);
+                }
+            }
+        } else {
+            createGrid(count2);
+            count2 = 0;
+            gridStyles();
+            currentGrid++;
+            console.log(gridSize);
+        }
+    }
+});
 
-//try to take advantage of the grid to change the size and number of
-// the squares in the grid
-/**
- * when I change the slider's position it chnages the size of the squares
-   in the grid. Use javascript to manipulate the css variables so that the
-   size is changed by the slider.
- */
-
-while(count < (gridSize * gridSize)){
-    grid.style.display = 'grid';
-    grid.style.justifyContent = 'center';
-    grid.style.alignContent = 'center';
-    grid.style.gridTemplateColumns = `repeat(${gridSize}, ${25}px)`;
-    grid.style.gridTemplateRows = `repeat(${gridSize}, ${25}px)`;
-    grid.style.maxWidth = "50%";
-    grid.style.maxHeight = "50%";
-    const square = document.createElement('div');
-    square.style.width = `${25}px`;
-    square.style.height = `${25}px`;
-    square.style.border = '1px solid black';
-    square.style.maxWidth = '100%';
-    square.classList.add('grid-item');
-    grid.appendChild(square);
-    count++;
-    const squares = document.querySelectorAll('.grid-item');
-    squares.forEach((square) => {
-        square.addEventListener('mouseover', () => {
-            square.style.backgroundColor = 'black';
+function createGrid(count){
+    while(count < (gridSize**2)){
+        const gridItem = document.createElement('div');
+        gridItem.classList.add('grid-element');
+        grid.appendChild(gridItem);
+        gridItem.style.border = '1px solid grey';
+        count++;
+        const squares = document.querySelectorAll('.grid-element');
+        squares.forEach((square) => {
+            square.addEventListener('mouseover', () => {
+                square.style.backgroundColor = `${rgbColorChange()}`;
+            });
         });
-    });
+    }
+    currentGrid++;
 }
 
+createGrid(count);
+
+function gridStyles(){
+    gridS.border = '1px solid black';
+    gridS.width = '500px';
+    gridS.height = '500px';
+    
+    gridS.display = 'grid';
+    gridS.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+    gridS.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+}
+
+gridStyles();
+
+function removePrevGrid(){
+    currentGrid = 0;
+    if(grid.hasChildNodes() == true){
+        while(grid.firstChild){
+            grid.removeChild(grid.firstChild);
+        }
+    }
+}
+
+function rgbColorChange(){
+    rgbColor1 = Math.random() * 255;
+    rgbColor2 = Math.random() * 255;
+    rgbColor3 = Math.random() * 255;
+    rbgColor = `rgb(${rgbColor1}, ${rgbColor2}, ${rgbColor3})`;
+    return rbgColor;
+}
