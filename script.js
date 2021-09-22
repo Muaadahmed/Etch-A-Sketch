@@ -20,7 +20,7 @@ button.addEventListener('click', () => {
         gridSize = parseInt(prompt('How many Squares ?: '));
         if(gridSize > 64){
             while(gridSize > 64){
-                alert('Pick a number under 30');
+                alert('Pick a number under 64');
                 gridSize = parseInt(prompt('How many Squares ?: '));
                 if(gridSize <= 64){
                     createGrid(count2);
