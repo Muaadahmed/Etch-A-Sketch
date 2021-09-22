@@ -12,7 +12,7 @@ let currentGrid = 0;
 let rgbColor1;
 let rgbColor2;
 let rgbColor3;
-let rbgColor = `rgb(${rgbColor1}, ${rgbColor2}, ${rgbColor3})`;
+let randColor = `rgb(${rgbColor1}, ${rgbColor2}, ${rgbColor3})`;
     
 button.addEventListener('click', () => {
     if(currentGrid >= 1){
@@ -79,6 +79,6 @@ function rgbColorChange(){
     rgbColor1 = Math.random() * 255;
     rgbColor2 = Math.random() * 255;
     rgbColor3 = Math.random() * 255;
-    rbgColor = `rgb(${rgbColor1}, ${rgbColor2}, ${rgbColor3})`;
-    return rbgColor;
+    randColor = `rgb(${rgbColor1}, ${rgbColor2}, ${rgbColor3})`;
+    return randColor;
 }
