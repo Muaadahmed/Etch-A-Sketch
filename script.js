@@ -5,7 +5,6 @@ const gridElement = document.querySelectorAll('.grid-element');
 
 let count = 0;
 let count2 = 0;
-let gridS = grid.style;
 let gridItem = null;
 let gridSize = 16;
 let currentGrid = 0;
