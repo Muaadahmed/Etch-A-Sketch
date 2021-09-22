@@ -18,11 +18,11 @@ button.addEventListener('click', () => {
     if(currentGrid >= 1){
         removePrevGrid();
         gridSize = parseInt(prompt('How many Squares ?: '));
-        if(gridSize > 30){
-            while(gridSize > 30){
+        if(gridSize > 64){
+            while(gridSize > 64){
                 alert('Pick a number under 30');
                 gridSize = parseInt(prompt('How many Squares ?: '));
-                if(gridSize <= 30){
+                if(gridSize <= 64){
                     createGrid(count2);
                     count2 = 0;
                     gridStyles();
@@ -47,26 +47,21 @@ function createGrid(count){
         grid.appendChild(gridItem);
         gridItem.style.border = '1px solid grey';
         count++;
-        const squares = document.querySelectorAll('.grid-element');
-        squares.forEach((square) => {
-            square.addEventListener('mouseover', () => {
-                square.style.backgroundColor = `${rgbColorChange()}`;
-            });
-        });
     }
+    const squares = document.querySelectorAll('.grid-element');
+    squares.forEach((square) => {
+        square.addEventListener('mouseover', () => {
+            square.style.backgroundColor = `${rgbColorChange()}`;
+        });
+    });
     currentGrid++;
 }
 
 createGrid(count);
 
 function gridStyles(){
-    gridS.border = '1px solid black';
-    gridS.width = '500px';
-    gridS.height = '500px';
-    
-    gridS.display = 'grid';
-    gridS.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-    gridS.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+    grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 }
 
 gridStyles();
